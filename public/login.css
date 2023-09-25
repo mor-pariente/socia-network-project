@@ -1,0 +1,56 @@
+body {
+    margin: 50px;
+    padding: 0;
+    height: auto;
+    background-image: url("https://uploads-ssl.webflow.com/5a9ee6416e90d20001b20038/628a0c333e6eda5e0acda80c_dark-purple-gradient.png");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+  justify-content: center; /* ממריץ את הקונטיינר לאופן אופן אופטומטי למרכז המסך */
+  align-items: center; /* מישבת את הקונטיינר לאופן אופן אופטומטי למרכז המסך */
+  height: 50vh; /* הקטנתי גם את הגובה של ה-<body> לגובה הצ׳׳ל של המסך */
+}
+
+
+.container {
+    background-color: rgba(0, 0, 0, 0.345);
+    border-radius: 15px;
+    width:30%;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    text-align: center;
+       margin-top: 10%;
+       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.307);
+       
+      }
+
+
+      .custom-button {
+        background-color: #0000009b;
+        border-radius: 50px;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 6px 8px;
+        cursor: pointer;
+        position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+        
+
+      }
+    
+      /* סגנון לתמונה */
+      .button-icon {
+        width: 20px; /* כלול גודל רצוי */
+        height: 20px; /* כלול גודל רצוי */
+        position: absolute; /* יוסיף את התכונה position: absolute; לתמונה */
+        left: 5px; /* מיקום יחסי משמאל */
+        top: 50%; /* מיקום יחסי במרכז לגובה */
+        transform: translateY(-50%); /* מיקום אנכי מרכזי לאורך */
+        
+      }      
+
+      .custom-button:hover{background-color:#ffffff4b};
