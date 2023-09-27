@@ -39,4 +39,25 @@ router.get("/api/auth/google/callback", passport.authenticate("google", { failur
     res.redirect("/good");
   });
 
+  router.get('/logout', (req, res, next) => {
+    req.logout((error) => {
+        if (error) {return next(error)}
+        res.redirect('/')
+    })
+  })
+  
+/* GET Home Page */
+2
+router.get('/home', isAuthenticated, function(req, res){
+3
+  res.render('home', { user: req.user });
+4
+});
+5
+6
+// As with any middleware it is quintessential to call next() 
+7
+// if the user is authenticated 
+8
+
 module.exports = router;

@@ -35,13 +35,36 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/login.html");
 });
 
-app.get("/failed", (req, res) => res.send("You have failed to log in"));
+app.get("/failed", (req, res) =>   res.redirect("/")
+);
 
 app.get("/good", isLoggedIn, (req, res) => {
  const userEmail = req.user.emails[0].value;
  const userName = req.user.displayName;
-  res.send(`Welcome, ${userEmail}!`);
- 
+
+ res.redirect("/home");// לרנדר את דף הבית + התנתקות 
+
+});
+
+
+app.get("/profile", (req, res) => {
+  if (req.user) {
+    // משתמש מחובר, מאשר גישה לדף הבית
+    res.sendFile(__dirname + "/public/profile.html");
+  } else {
+    // משתמש לא מחובר, מחזיר מענה או מעביר אותו לדף התחברות
+    res.sendStatus(401); 
+  }
+});
+
+app.get("/home", (req, res) => {
+  if (req.user) {
+    // משתמש מחובר, מאשר גישה לדף הבית
+    res.sendFile(__dirname + "/public/home.html");
+  } else {
+    // משתמש לא מחובר, מחזיר מענה או מעביר אותו לדף התחברות
+    res.sendStatus(401); 
+  }
 });
 
 app.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
@@ -87,5 +110,13 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
   
 });
+
+
+app.get("/api/getUserName", isLoggedIn, (req, res) => {
+  const userName = req.user.displayName; // שם המשתמש של המשתמש המחובר
+  console.log(userName);
+  res.json({ userName }); // שליחת השם כתשובה בפורמט JSON
+});
+
 
 app.listen(3000, () => console.log("newApp is listening on port 3000!"));
