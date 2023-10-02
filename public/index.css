@@ -1,0 +1,110 @@
+body{
+    background-image: url("https://t3.ftcdn.net/jpg/02/23/32/38/360_F_223323802_kYfcyV6LvGW2rXKPPyno8hSHRLi5Aoel.jpg");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.button-icon{
+  width: 25px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  height: 25px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  position: absolute; /* יוסיף את התכונה position: absolute; לתמונה */
+  right: 5px; /* מיקום יחסי משמאל */
+  top: 50%; /* מיקום יחסי במרכז לגובה */
+  transform: translateY(-50%); /* מיקום אנכי מרכזי לאורך */
+  border-radius: 50%; /* כדי ליצור תמונה עגולה */
+  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+}
+.bar {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    background-color: #0000007d;
+    height: 50px; 
+    line-height: 50px; 
+    font-family: 'Roboto', sans-serif;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+    z-index: 2; /* עושה את האלמנט להיות עליון בציר Z */
+
+  
+  }
+  
+  
+  .container {
+    background-color: rgba(255, 255, 255, 0.346);
+    border-radius: 8px;
+   
+    text-align: justify;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.029);
+    
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    z-index: 1; /* עושה את האלמנט להיות עליון בציר Z */
+
+    
+    }
+    
+    .custom-button {
+        background-color: #0000009b;
+        border-radius: 50px;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        padding: 10px 20px;
+        cursor: pointer;
+        position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+        border: none;
+        max-height: 35px;
+
+
+      }
+      #profileBtn{
+        padding-right: 40px;
+
+      }
+      
+      #userNameTitle{
+        font-size: 30px;
+        font-family: sans-serif;
+        color: rgb(255, 255, 255);
+        background-color: #4e4e4e47;
+        padding: 1%;
+        padding-left: 5%;
+       display: block;
+      }
+      #coverPhotoContainer {
+        position: relative; /* כדי לאפשר מיקום יחסי של תמונת הפרופיל בתוך הקאבר */
+        width: 100%; /* רוחב קבוע לקונטיינר */
+        height: 50vh; /* גובה קבוע לקונטיינר */
+      }
+      .icons{
+        background-image: url("https://icon-library.com/images/white-home-icon-png/white-home-icon-png-21.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+      #coverPhoto {
+        width: 100%; /* רוחב קבוע לתמונת הקאבר */
+        height: 100%; /* גובה קבוע לתמונת הקאבר */
+        object-fit: cover; /* הצגת תמונת הקאבר כך שתמלא את הקונטיינר */
+      }
+      
+      #profilePhoto {
+        position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
+        bottom: -25%; /* מיקום בתחתית הקאבר */
+        right: 5%; /* מיקום בצד הימני של הקאבר */
+        width: 300px; /* רוחב קבוע לתמונת הפרופיל */
+        height: 300px; /* גובה קבוע לתמונת הפרופיל */
+        object-fit: cover; /* הצגת תמונת הפרופיל כך שתמלא את האלמנט */
+        border-radius: 50%; /* ייעוץ את תמונת הפרופיל לעגולה */
+        box-shadow: 0px 0px 10px#00000049;
+      }
+      
+      .custom-button:hover{background-color:#ffffff4b};
+      
+      

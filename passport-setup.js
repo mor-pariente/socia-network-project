@@ -17,6 +17,9 @@ passport.use(new GoogleStrategy({
   callbackURL: "http://localhost:3000/api/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
-  // use the profile info (mainly profile id) to check if the user is registered in your database
-    return done(null, profile);
-  }));
+  // הוסף את ה-ID של המשתמש לפרופיל
+  profile.id = profile._json.sub.toString();
+
+  // use the profile info (including the profile id) to check if the user is registered in your database
+  return done(null, profile);
+}));
