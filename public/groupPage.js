@@ -20,7 +20,6 @@ $(document).ready(() => {
             .then(group => {
               toggleUploadContainerVisibility(false);
               loadMorePosts(userId, userName, 'group', groupId);
-              console.log(group);
               displayGroupMembers(groupId, group.admin, userId);
               friendsReqEventListeners(userId);
 

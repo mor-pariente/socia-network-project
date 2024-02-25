@@ -5,12 +5,11 @@ import { searchProfile } from "./searchController.js";
 
 
 
-var updatePImageFlag = { value: false };  // משתנה מסוג אובייקט שמכיל את הערך כתוכן
+var updatePImageFlag = { value: false };  
 var updateCImageFlag = { value: false };
 
-// פונקציה לעדכון סטאטוס התמונה
 function updateImageFlag(flagObject, containerName) {
-  flagObject.value = true;  // משנה את הערך באובייקט ל-true
+  flagObject.value = true;  
 
   toggleUploadContainerVisibility(true, containerName);
 };
@@ -42,14 +41,12 @@ function uploadImage(userId) {
   const file = fileInput.files[0];
 
   if (!file) {
-    $('#message').text('אנא בחר קובץ תמונה להעלאה');
+    $('#message').text('select photo to upload');
     return;
   }
 
   const formData = new FormData();
   formData.append('image', file);
-  console.log(updateCImageFlag);
-  console.log(updatePImageFlag);
 
   if (updatePImageFlag.value) {
     uploadImageToServer('/upload-profile-image', formData, fetchUpdatedProfileImage, userId);
@@ -65,7 +62,6 @@ function uploadImage(userId) {
 };
 
 function uploadImageToServer(url, formData, fetchImage, userId) {
-  console.log(userId);
   $.ajax({
     url: url,
     type: 'POST',
@@ -93,7 +89,6 @@ export function initializePage(userId) {
 
   getUser(userId)
     .then(user => {
-      console.log(user);
       getConnectedUserName()
       .then(connectedUsername=> {
         loadUserName('userName',connectedUsername);

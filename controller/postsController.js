@@ -6,7 +6,6 @@ import { loadUserName, fetchUpdatedProfileImage, toggleUploadContainerVisibility
 import { searchProfile } from "./searchController.js";
 import { profileButton } from "./profileController.js";
 
-// טעינת שם משתמש ותמונת פרופיל
 const uploadedFiles = [];
 
 
@@ -99,10 +98,9 @@ function loadMorePostsFromServer(skip, limit, connectedUserId, connectedUserName
       success: function (data) {
           const posts = data.posts;
           handleLoadedPosts(posts, skip, limit, connectedUserId, connectedUserName);
-          console.log(posts);
       },
       error: function (error) {
-          console.log('שגיאה בשליפת הפוסטים:', error);
+          console.log('error fetching posts  :', error);
       }
   });
 }
@@ -138,7 +136,6 @@ function deletePost(postId) {
       url: `/delete-post/${postId}`,
       method: 'DELETE',
       success: function(response) {
-          // הסר את הפוסט מה-UI, למשל:
           $(`#${postId}`).remove();
           alert('Post deleted successfully');
       },
@@ -212,7 +209,6 @@ function createPostElement(post, connectedUserId, connectedUserName) {
     const profilePic = createProfilePic(post.user.profilePicBase64);
     const contentElement = $('<p>', { class: 'content', id: 'content'+post._id }).text(post.content);
 
-    // בדיקה אם יש פרטי צמח והוספתם לאלמנט התוכן
     if (post.originType === 'plant' && post.plantDetails) {
         const plantDetailsElement = $('<div>', { class: 'plant-details' });
         const plantDetailsContent = `
@@ -227,7 +223,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
 
         `;
         plantDetailsElement.html(plantDetailsContent);
-        contentElement.append(plantDetailsElement); // הוספת פרטי הצמח לאלמנט התוכן
+        contentElement.append(plantDetailsElement); 
     }    
   
     profileButton.append(profilePic);
@@ -283,7 +279,6 @@ function createPostElement(post, connectedUserId, connectedUserName) {
   
   
     likeButton.click(async function () {
-      console.log(post.likes);
     
       
 
@@ -298,13 +293,8 @@ function createPostElement(post, connectedUserId, connectedUserName) {
           }),
           contentType: 'application/json',
           success: function (newLike) {
-           // liked = true; // שינה את המשתנה liked ל true
-            console.log('לייק נוסף בהצלחה');
             post.likes.push(newLike);
-            // יצר את מבנה ה-HTML שמייצג את הלייק החדש
-            // הוסף את המבנה החדש לפוסט ב-HTML
-            // עדכן את כפתור הלייקים
-            //$(".likes").text(post.likes.length + 1 + ' likes');
+          
             likes.text(post.likes.length  + ' likes')
 
           },
@@ -314,29 +304,24 @@ function createPostElement(post, connectedUserId, connectedUserName) {
           },
         });
       } else {
-        // כאשר המשתמש לוחץ שוב על הלייק
         $.ajax({
           type: 'POST',
-          url: '/remove-like', // הגדר את הנתיב להסרת הלייק (אתה צריך לממש אותו בשרת)
+          url: '/remove-like', 
           data: JSON.stringify({
             postId: post._id,
             userId: userId,
           }),
           contentType: 'application/json',
           success: function (removedLike) {
-            //liked = false; // שינה את המשתנה liked ל false
-            console.log('הלייק הוסר בהצלחה');
             const index = post.likes.findIndex(item => item.user === userId);
             if (index !== -1) {
               post.likes.splice(index, 1);
-              console.log('removd');
             }
-            // עדכן את כפתור הלייקים חזרה למצב הרגיל
             likes.text(`${post.likes.length} likes`);
           },
           error: function (error) {
             console.error(error);
-            alert('שגיאה בהסרת הלייק');
+            alert('error removing like');
           },
         });
       }
@@ -377,16 +362,13 @@ function createPostElement(post, connectedUserId, connectedUserName) {
       // בדוק אם התוכן אינו ריק
       if (commentText.trim() === '') {
         alert('אנא הזן תוכן לתגובה');
-        writeComment.val(''); // מוסיף את זהו הקוד לאחר ההודעה בכדי לנקות את תיבת הטקסט
+        writeComment.val(''); 
         return;
       };
     
-      // אפשר לשלוח את התגובה באמצעות AJAX
       const userId = await getConnectedUserID();
       const userName = await getConnectedUserName();
     
-      console.log(userId);
-      console.log(userName);
     
       $.ajax({
         type: 'POST',
@@ -399,17 +381,11 @@ function createPostElement(post, connectedUserId, connectedUserName) {
         }),
         contentType: 'application/json',
         success: function (newComment) {
-          console.log('yessssss');
-          console.log('התגובה נוצרה בהצלחה');
 
-          // יצר את מבנה ה-HTML שמייצג את התגובה החדשה
           const newCommentElement = createCommentElement(newComment);
       
-          // הוסף את המבנה החדש לפוסט ב-HTML
           commentDisplay.append(newCommentElement);
-          // נקה את תיבת הטקסט לתגובה
           writeComment.val('');
-          //לעדכן את כפתוק קומנט 
           $(".comments").text(post.comments.length+1 + ' comments');
         },
         error: function (error) {
@@ -419,7 +395,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
       });
     });
     
-    return postCommentBtn; // הוספתי סוגריים סופית כאן
+    return postCommentBtn; 
   };
   
   
@@ -442,7 +418,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
       const commentElement = $('<p>', { class: 'comment-element'});
 
       const content = $('<div>', { text: comment.content });
-      const prflBtn = createProfileButton(comment.userName, comment.user);/////////////////////////חסר תמונה ושם
+      const prflBtn = createProfileButton(comment.userName, comment.user);
       const formattedDate = new Date(comment.created).toLocaleString();
       const timeStamp = createCommentTimestamp(formattedDate);
   
@@ -470,7 +446,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
 
       })
       .catch(error => {
-        console.error('שגיאה בשליפת תמונת הפרופיל:', error);
+        console.error('error getting profile', error);
       });
 
 
@@ -670,11 +646,9 @@ const editForm = $('<form>').addClass('edit-form').attr('id', `editForm_${post._
 
 
   const postElement = $("#" + post._id);
-  console.log('Post element:', postElement.length); // צריך להדפיס 1 אם האלמנט קיים
   const editTextarea = $('<textarea>').val(post.content).addClass('edit-textarea');
   const submitButton = $('<button>').text('OK').addClass('white-custom-btn');
   const cancelButton = $('<button>').text('Cancel').addClass('white-custom-btn');
-console.log('editPostttttttttt');
   editForm.append(editTextarea, submitButton, cancelButton);
 
   // הוספת הטופס לדום, למשל מתחת לפוסט או בתוך דיאלוג מודאלי

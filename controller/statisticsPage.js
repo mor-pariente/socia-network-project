@@ -40,7 +40,7 @@ getConnectedUserName()
             new google.maps.Marker({
               position: latLng,
               map: map,
-              title: post.title // או כל טקסט שאתה רוצה להציג
+              title: post.title
             });
           }
         });
@@ -55,11 +55,11 @@ getConnectedUserName()
 
   function loadUserPostCounts() {
       $.ajax({
-          url: '/api/user-post-count', // URL של נקודת הקצה שיצרת
+          url: '/api/user-post-count', 
           method: 'GET',
           success: function(data) {
-              displayUserPostCounts(data); // עדכון הממשק המשתמש
-              drawPieChart(data); // ציור דיאגרמת העוגה
+              displayUserPostCounts(data); 
+              drawPieChart(data); 
           },
           error: function(error) {
               console.error('Error fetching user post counts:', error);
@@ -72,7 +72,7 @@ getConnectedUserName()
       userPostCounts.forEach(userPostCount => {
           const listItem = $('<li>');
           const postCountElement = $('<span>').text(`Posts: ${userPostCount.postCount}`);
-          postCountElement.css('color', colorScale(userPostCount.userName)); // צביעת הטקסט לפי פלטת הצבעים
+          postCountElement.css('color', colorScale(userPostCount.userName));
           const profileButton = createProfileButton(userPostCount.userName, userPostCount._id);
   
           listItem.append(profileButton, postCountElement);
@@ -105,9 +105,8 @@ getConnectedUserName()
           .enter()
           .append('path')
           .attr('d', arc)
-          .attr('fill', d => colorScale(d.data.userName)); // שימוש בפלטת הצבעים
+          .attr('fill', d => colorScale(d.data.userName)); 
   
-      // יצירת תוויות לחלקי העוגה
       arcs.append('text')
           .attr("transform", function(d) {
               return `translate(${arc.centroid(d)})`;
@@ -123,49 +122,43 @@ getConnectedUserName()
   d3.json('/api/post-count-per-month').then(data => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
-    // מרה של נתונים לחודשים
     data.forEach(d => {
       d.monthName = `${months[d._id.month - 1]} ${d._id.year}`;
       d.value = d.postCount;
     });
   
-    // הגדרת ממדי הגרף
     const margin = { top: 20, right: 20, bottom: 80, left: 40 },
           width = 960 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
   
-    // ציר X
     const x = d3.scaleBand()
         .range([0, width])
         .domain(data.map(d => d.monthName))
         .padding(0.1);
   
-    // ציר Y
     const y = d3.scaleLinear()
     .range([height, 0])
     .domain([0, d3.max(data, d => d.value)]);
 
   
-    // יצירת SVG
     const svg = d3.select("#chart").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
   
-    // ציור עמודות הגרף
-    // ציור עמודות הגרף
+   
     svg.selectAll(".bars")
     .data(data)
     .enter().append("rect")
       .attr("class", "bars")
-      .attr("x", d => x(d.monthName)) // מיקום אופקי של העמודה
-      .attr("width", x.bandwidth()) // רוחב העמודה
-      .attr("y", d => y(d.value)) // מיקום אנכי של הקצה העליון של העמודה
-      .attr("height", d => height - y(d.value)); // גובה העמודה
+      .attr("x", d => x(d.monthName)) 
+      .attr("width", x.bandwidth()) 
+      .attr("y", d => y(d.value)) 
+      .attr("height", d => height - y(d.value)); 
   
   
-    // הוספת ציר X
+    
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(x))
@@ -175,7 +168,6 @@ getConnectedUserName()
           .attr("dy", ".15em")
           .attr("transform", "rotate(-65)");
   
-    // הוספת ציר Y עם
   svg.append("g")
   .call(d3.axisLeft(y).ticks(d3.max(data, d => d.value)).tickFormat(d3.format("d")));
   });
