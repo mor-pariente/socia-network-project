@@ -5,7 +5,199 @@ body{
     font-family: 'Roboto', sans-serif;
     
 }
+.likesCommentsContainer button{
+  margin: 5px;
+}
+.user-name-post {
+  text-align: right; /* מיושר לימין */
+  display: block;
+  font-size: 15px;
+  position: relative;
+   /* הנמליך את הטקסט למעלה */
+  padding-right: 10px;
+  padding-left: 0px; /* מוסיף שוליים בצדדים שמאליים */
+  white-space: nowrap; /* מונע מהטקסט לשבור לשורות חדשות */
+  max-width: 100%; /* אורך מרבי של 100% מהגודל הזמין בתוך הכפתור */
+}
+.profileButtons .user-name-post {
+  text-align: right; /* מיושר לימין */
+  font-size: 15px;
+  white-space: nowrap; /* מונע שבירת שורות */
+  width: fit-content;
+}
+#postContent #commwnt-area{
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+#previewContainer img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  
+}
+.post{
+  background-color: rgb(241, 240, 240);
+  background-attachment: fixed;
+  width: 800px;
+  padding: 10px;
+  margin-left: 25px; 
+  margin-right: 25px; 
+  margin-top: 12px; 
+  margin-bottom: 12px; 
+  height: fit-content;
+  grid-template-columns: repeat(auto-fill, 8, 1fr);
+  place-items: left;
 
+}
+
+.post .collage{
+  width: 800px;
+  padding-left: 40px;
+}
+.text-center{
+  margin-left: 25px; 
+  margin-right: 25px; 
+  margin-top: 12px; 
+  margin-bottom: 12px; 
+}
+.post-form {
+  text-align: center; /* מרכז את הטקסט */
+  background-color: rgb(241, 240, 240);
+  width: 800px;
+  padding: 10px;
+
+}
+
+#groupNameContainer{
+  text-align: center; /* מרכז את הטקסט */
+  background-color: #0000009b;
+  width: 800px;
+  padding: 10px;
+}
+.text-center {
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* רווח בין הכפתורים לתיבת הטקסט */
+  display: inline-block; /* הגדרה של הכפתורים להיות inline-block */
+  margin: 5px; /* רווח בין הכפתורים */
+}
+
+.posts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#postContent ,.comment-area{
+  width: 700px;
+  width: 700px;
+  padding-left: 20px;
+  border: none;
+  background-color: #00000000;
+
+}
+
+
+.collage {
+  display: grid;
+  
+  grid-template-columns: repeat(auto-fill, 8, 1fr);
+    grid-template-rows: repeat(auto-fill, 8, 5vw);
+  max-height: 900px;
+  max-width: 700px;
+  padding: 20px;
+  
+  width: 100%;
+  height: 100%;
+  grid-gap: 10px;
+  object-fit:fill;
+
+  grid-auto-rows: minmax(100px, auto); /* גובה אוטומטי לפי התוכן */
+}
+
+
+#img1 {
+  grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  width: 100%;
+    height: 100%;
+ object-fit: cover;
+ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+
+}
+
+#img2 { 
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+    height: 100%;
+ object-fit: cover;
+ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+
+
+}
+
+#img3 { 
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 6;
+  width: 100%;
+  height: 100%;
+object-fit: cover;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+
+
+}
+#img4 { 
+  grid-column-start: 5;
+  grid-column-end: 9;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  
+  width: 100%;
+  height: 100%;
+object-fit: cover;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+
+
+}
+#img5 { 
+  grid-column-start: 1;
+  grid-column-end: 9;
+  grid-row-start: 6;
+  grid-row-end: 9;
+  width: 100%;
+  height: 100%;
+object-fit: cover;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+
+
+}
+
+.content{
+position: relative;
+left: 50px;
+
+}
+#closeButton{
+background-color: rgba(11, 189, 189, 0);
+padding: 5px;
+position: relative;
+left: 10px;
+margin-left: 5px;
+margin-right: 25px;
+
+}
 .button-icon{
   width: 25px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
   height: 25px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
@@ -15,8 +207,19 @@ body{
   transform: translateY(-50%); /* מיקום אנכי מרכזי לאורך */
   border-radius: 50%; /* כדי ליצור תמונה עגולה */
   overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
-}
+} 
+
+
+.like-icon{
+  width: 20px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  height: 20px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  position:relative;
+  top:2px;
+} 
+
 .bar {
+    display: inline-block;
+
     position: fixed;
     top: 0; 
     left: 0;
@@ -27,28 +230,93 @@ body{
     font-family: 'Roboto', sans-serif;
     color: rgb(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
-    z-index: 2; /* עושה את האלמנט להיות עליון בציר Z */
+    z-index: 2; /* עושה את האלמנט להיות עליון בציר Z */ 
+}
 
-  
-  }
-  
-  
-  .container {
+
+#chat-container{
+  position: fixed;
+bottom: 0%;
+left:2%;
+
+}
+#updateProfilePhotoButton{
+  position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
+  bottom: -120px; /* מיקום בתחתית הקאבר */
+  right: 120px; /* מיקום בצד הימני של הקאבר */
+  z-index: 3;
+}
+
+
+
+
+#updateCoverPhotoButton, #addFriend{
+    position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
+    bottom: 20px; /* מיקום בתחתית הקאבר */
+    left: 20px; /* מיקום בצד הימני של הקאבר */
+    z-index: 3;
+    
+} 
+#uploadContainer {
+    display: none; /* הסתר את הקונטיינר בתחילה */
+}
+#uploadMessage {
+  display: none; /* הסתר את הקונטיינר בתחילה */
+}
+#container {
     background-color: rgba(255, 255, 255, 0.346);
     border-radius: 8px;
-   
+
     text-align: justify;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.029);
     
-    width: 80%;
-    height: 100vh;
-    margin: 0 auto;
-    z-index: 1; /* עושה את האלמנט להיות עליון בציר Z */
+    width: fit-content;
+    height: fit-content;
 
-    
-    }
-    
-    .custom-button {
+    margin: 0 auto;
+    margin-top: 2%;
+    z-index: 1; /* עושה את האלמנט להיות עליון בציר Z */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.uploadContainer{
+
+      color: white;
+
+      position: absolute;
+    top: 50%; /* מצביע לחצי העליון של התמונה */
+    left: 50%; /* מצביע לחצי השמאלי של התמונה */
+    transform: translate(-50%, -50%); /* מתקן את המיקום כך שהקונטיינר יהיה במרכז התמונה */
+      background-color: rgba(0, 0, 0, 0.515); /* רקע חצי שקוף */
+      padding: 20px; /* הצגת מרווח מסביב לתוכן שבתוך ה-container */
+      box-shadow: 0px -10px 10px #00000049; /* הצללה כדי ליצור את האפקט */
+      border-radius: 50px; /* ייעוץ את ה-container לעגולה */
+      text-align: center; /* מרכז את התוכן שבתוך ה-container */
+      z-index: 3; /* כדי להציב את ה-container מעל תמונת הפרופיל */
+  
+}    
+.profileButtons {
+  background-color: #0000009b;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  height: 50px;
+  width: fit-content;
+  padding-left: 50px; /* הרוחב של הפינה השמאלית */
+
+  /* סגנון של הטקסט בפינת הכפתור */
+  position: relative; /* מתוך התכונות של הכפתור */
+  
+}
+
+/* סגנון של הטקסט שבתוך הכפתור */
+
+.custom-button {
         background-color: #0000009b;
         border-radius: 50px;
         color: white;
@@ -61,50 +329,378 @@ body{
         position: relative; /* יוסיף את התכונה position: relative; לכפתור */
         border: none;
         max-height: 35px;
+        min-height: 35px;
+        min-width: 30px;
+
+        z-index: 3;
 
 
-      }
-      #profileBtn{
+}
+.white-custom-btn{
+background-color: #f0f0f0;
+border-radius: 50px;
+color: rgb(156, 156, 156);
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 12px;
+padding: 10px 20px;
+cursor: pointer;
+position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+border: none;
+max-height: 35px;
+min-height: 35px;
+min-width: 30px;
+margin-bottom: 5px;
+z-index: 3;
+
+
+}
+.remove-btn{
+  background-color: #ff0000;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+  border: none;
+  height: 25px;
+  width: 25px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+
+  z-index: 3;
+  
+  
+  }
+.like-button {
+  background-color: #0000009b;
+  border-radius: 50px;
+
+  
+  
+  display: inline-block;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+  top:5px;
+  border: none;
+  height: 35px;
+  width: 35px;
+
+
+
+}
+#profileBtn{
         padding-right: 40px;
+        position:absolute;
+        right: 0vh;;
+        top: 10px;
+        max-width: 150px;
 
-      }
-      
-      #userNameTitle{
+
+}
+
+#statistics-button{
+  position:absolute;
+  right: 160px;;
+  top: 10px;
+ 
+}
+#plantStore-button{
+  position:absolute;
+  right: 250px;;
+  top: 10px;
+ 
+}
+.user-chat-container {
+  display: flex;
+  align-items: center; /* אופציונלי - ליישר את האלמנטים לאמצע */
+  gap: 10px; /* יוצר ריווח בין הכפתור לספאן */
+  background-color: #4e4e4e47;
+  padding: 1%;
+  padding-left: 3%;
+ display: block;
+ width: 96vh;
+}
+
+
+
+
+#userNameTitle{
         font-size: 30px;
         font-family: sans-serif;
         color: rgb(255, 255, 255);
-        background-color: #4e4e4e47;
-        padding: 1%;
-        padding-left: 5%;
-       display: block;
-      }
-      #coverPhotoContainer {
+        position: relative;
+        top: 5px;
+       
+}
+#coverPhotoContainer {
         position: relative; /* כדי לאפשר מיקום יחסי של תמונת הפרופיל בתוך הקאבר */
-        width: 100%; /* רוחב קבוע לקונטיינר */
+        width: 100vh; /* רוחב קבוע לקונטיינר */
         height: 50vh; /* גובה קבוע לקונטיינר */
-      }
-      .icons{
+        
+}
+.icons{
         background-image: url("https://icon-library.com/images/white-home-icon-png/white-home-icon-png-21.jpg");
         background-size: cover;
         background-position: center;
-      }
-      #coverPhoto {
-        width: 100%; /* רוחב קבוע לתמונת הקאבר */
-        height: 100%; /* גובה קבוע לתמונת הקאבר */
-        object-fit: cover; /* הצגת תמונת הקאבר כך שתמלא את הקונטיינר */
-      }
+}
+#coverPhoto {
+width: 100%; /* רוחב קבוע לתמונת הקאבר */
+height: 100%; /* גובה קבוע לתמונת הקאבר */
+ object-fit: cover; /* הצגת תמונת הקאבר כך שתמלא את הקונטיינר */
+}
       
-      #profilePhoto {
-        position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
-        bottom: -25%; /* מיקום בתחתית הקאבר */
-        right: 5%; /* מיקום בצד הימני של הקאבר */
-        width: 300px; /* רוחב קבוע לתמונת הפרופיל */
-        height: 300px; /* גובה קבוע לתמונת הפרופיל */
-        object-fit: cover; /* הצגת תמונת הפרופיל כך שתמלא את האלמנט */
-        border-radius: 50%; /* ייעוץ את תמונת הפרופיל לעגולה */
-        box-shadow: 0px 0px 10px#00000049;
-      }
+
+.likesCommentsContainer{
+  margin: 5px;
+}
       
-      .custom-button:hover{background-color:#ffffff4b};
+.likesCommentsContainer {
+  display: inline-block;
+}
+.profilePics{
+  width: 40px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  height: 40px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  
+  border-radius: 50%; /* כדי ליצור תמונה עגולה */
+  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  position: absolute;
+  left: 5px;
+ top: 5px;
+ 
+
+
+
+}
+
+
       
-      
+#profilePhoto {
+ position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
+ bottom: -130px; /* מיקום בתחתית הקאבר */
+ right: 30px; /* מיקום בצד הימני של הקאבר */
+ width: 300px; 
+ height: 300px; 
+ object-fit: cover; /* הצגת תמונת הפרופיל כך שתמלא את האלמנט */
+ border-radius: 50%; /* ייעוץ את תמונת הפרופיל לעגולה */
+box-shadow: 0px 0px 10px#00000049;
+z-index: 2;
+}
+#search-input ,#add-participants-search-input{
+  background-color: #0000009b;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+  border: none;
+  max-height: 35px;
+}
+#search-button ,#add-participants-search-button{
+  background-color:rgba(0, 0, 0, 0);
+  background-size: cover; /* כל התמונה תמלא את פני הכפתור */
+  color: transparent; /* מסתיר את הטקסט שבתוך הכפתור */
+
+border: none;
+  width: 17px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  height: 17px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  position: relative; /* יוסיף את התכונה position: absolute; לתמונה */
+  right: 20px; /* מיקום יחסי משמאל */
+  top: 10px; /* מיקום יחסי במרכז לגובה */
+  transform: translateY(-50%); /* מיקום אנכי מרכזי לאורך */
+  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  background-image: url("https://flaticons.net/icon.php?slug_category=science-technology&slug_icon=magnifying-glass");
+  cursor: pointer;
+
+}
+input[type="text"]:focus {
+  outline: none; /* מסיר את המעגל שמסביב לאינפוט כאשר יש פוקוס */
+  border: none; /* מסיר את הגבול כאשר יש פוקוס */
+}
+textarea:focus{
+  outline: none; /* מסיר את המעגל שמסביב לאינפוט כאשר יש פוקוס */
+  border: none; /* מסיר את הגבול כאשר יש פוקוס */
+}
+
+.profilePicsSearch{
+
+  width: 80px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  height: 80px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  
+  border-radius: 50%; /* כדי ליצור תמונה עגולה */
+  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  position: relative;
+  left: 5px;
+ top: 5px;
+ 
+}
+.userName-search{
+  color: rgb(39, 39, 39);
+  position: relative;
+  left: 100px;
+  top: -45px;
+  font-size: 20px;
+  
+
+
+}
+.userName{
+  padding-right: 30px;
+
+}
+.dropdown  {
+  width: 100%;
+  display: flex; /* הצגת הרכיבים בקונטיינר בצורה חדישה */
+  justify-content: center; /* מיקום אופקי במרכז הקונטיינר */
+  align-items: center;
+  position: fixed;
+  top: 10px; 
+}    
+
+#search-input{
+  width: 33%;
+right: -10px;
+}
+
+#search-menu{
+  display: none;
+  background-color: #0000007d;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+  position:inherit;
+  top:100px;  
+  width: 30vh;
+
+}
+#friendRequestsDropdown{
+  background-color: #0000007d;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
+  position:fixed;
+  top:70px;
+  width: fit-content;
+  padding: 10px;
+
+}
+
+#updateProfilePhotoButton, #updateCoverPhotoButton{
+  display: none;
+}
+
+
+
+.single-post
+{
+    background-color: #00000031;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.194); 
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+
+#groups-container ,#members-list, #search-plants-form{
+  background-color: rgba(255, 255, 255, 0.478);
+  padding: 10px;
+  border-radius: 5px;
+  position: fixed; 
+  top: 60px; 
+  right: 50px; 
+  width: 180px; 
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+#remove-list{
+  padding: 10px;
+  border-radius: 5px;
+  position: fixed; /* הגדר כיוון מיקום קבוע */
+  top: 60px; /* מרווח מלמעלה */
+  right: 50px; /* מרווח מצד ימין */
+  width: 180px; /* הגבל את הרוחב ל-30% מרוחב המסך */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  display: none;
+
+}
+#groups-title{
+  font-family: 'Roboto', sans-serif;
+  color: rgb(96, 96, 96);
+}
+
+button:hover{background-color:#00000052};
+
+
+#add-remove-menu {
+  display: none;
+}
+
+#add-participants-search-container{
+  display: none; /* הצגת הרכיבים בקונטיינר בצורה חדישה */
+  justify-content: center; /* מיקום אופקי במרכז הקונטיינר */
+  align-items: center;
+}
+
+#chat-container {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  overflow-y: auto;
+}
+#messages {
+  list-style-type: none;
+  padding: 0;
+}
+#chat-form {
+  margin-top: 10px;
+}
+
+.message {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 50px;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.sender {
+  background-color: rgb(108, 110, 108); /* צבע לדוגמה, ניתן לשנות */
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.receiver {
+  background-color: #696969; /* צבע לדוגמה, ניתן לשנות */
+  margin-left: 0;
+  margin-right: auto;
+}
+
+#weather-container {
+  padding: 10px;
+  border-radius: 5px;
+  position: fixed; 
+  top: 60px; 
+  left: 50px; 
+  width: 180px; 
+  background-color: rgba(255, 255, 255, 0.478);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+#temperature {
+  margin: 10px 0;
+  color: #333;
+}
+#weather-description {
+  color: #666;
+}

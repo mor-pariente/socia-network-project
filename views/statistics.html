@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link href="index.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <meta name="google-signin-client_id" content="***REMOVED***">
+        <title>statistics</title>
+        
+
+        <style>
+          #map {
+            height: 70%;
+            width: 70%;
+          }
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        </style>
+
+   
+    
+</head>
+<body>
+<div class="bar">
+    <button class="custom-button" onclick="window.location.href='/logout'">
+  Log Out</button>
+
+<button class="custom-button" onclick="window.location.href='/home'">Home</button>
+<button class="custom-button" id="friendRequestsButton">Friend Requests</button>
+<button class="custom-button" onclick="window.location.href='https://www.facebook.com/profile.php?id=61556487513960'">Facebook</button>
+
+  
+  <div id="search-container" class="dropdown">
+    <input type="text" id="search-input" placeholder>
+    <script>
+      document.getElementById('search-input').placeholder =   'search profile';
+  </script>
+    <button  id="search-button"></button>
+    <div id="search-menu">
+    </div>
+  </div>
+  <button id="statistics-button" class = "custom-button" onclick="window.location.href='/statistics' ">statistics</button>
+  <button id="plantStore-button" class = "custom-button" onclick="window.location.href='/plantStore' ">PlantStore</button>
+
+<button class="custom-button" id="profileBtn">
+    <span id="userName"></span>
+    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="icon" class="button-icon updetedProfilePhoto" id="small-profile-pic" >  </button>
+   </div></br></br>
+
+ 
+ 
+    
+     
+ 
+
+
+
+<div id="friendRequestsDropdown" class= "dropdown" style="display: none;">
+  <!-- Friend requests will be populated here -->
+</div>
+
+
+
+
+
+
+<h1>User - Posts counts</h1>
+<div id="pie-chart"></div>
+
+<div id="user-post-counts-container"></div>
+
+<h1>Posts - Locations</h1>
+
+<div id="map"></div>
+
+<h1>Public Posts Per Month</h1>
+
+<div id="chart"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script type="module"  src="../controller/statisticsPage.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGLtsyXJbI4I5jay8j3weEuRnJRYsTmHE&callback=initMap">
+      </script>
+
+</body>
+
+        
+    
+
+    
+</html>
+
