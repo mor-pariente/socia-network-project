@@ -9,12 +9,11 @@ export async function searchProfile(enableCheckboxes = false, searchInputId,sear
 
     const name = searchInput.value;
     try {
-      const response = await fetch(`/search?name=${name}`); // השתמשנו ב-await כאן
+      const response = await fetch(`/search?name=${name}`); 
       if (!response.ok) {
         throw new Error(`error in search req: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data.users);
 
       displaySearchResults(data.users, enableCheckboxes,searchMenuId );
     } catch (error) {
@@ -64,7 +63,6 @@ function displaySearchResults(users, enableCheckboxes, searchMenuId) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
 
-        // כאשר הצ'קבוקס משתנה, בדוק האם הוא מסומן והוסף או הורד את המשתמש מהמערך
         checkbox.addEventListener('change', () => {
           if (checkbox.checked) {
             selectedUsers.push(user._id);

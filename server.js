@@ -273,7 +273,7 @@ app.get("/api/getUser", isLoggedIn, async (req, res) => {
   }
 });
 
-app.get("/api/getGroup", ensureAuthenticated, async (req, res) => {///////להוסיף בדיקה האם משתמש בקבוצה
+app.get("/api/getGroup", ensureAuthenticated, async (req, res) => {
   const groupId = req.query.groupId;
   const userId= req.query.userId;
   if(IsUserParticipantInGroup(userId,groupId))
@@ -487,7 +487,6 @@ app.post('/upload', isLoggedIn, upload.array('fileInput', 5), async (req, res) =
           newPost.groupId = groupId;
       }
       try {
-        // פרסור נתוני המיקום מהבקשה
         let location;
         if (req.body.location) {
             try {
@@ -501,7 +500,6 @@ app.post('/upload', isLoggedIn, upload.array('fileInput', 5), async (req, res) =
           newPost.location = location;
       }
     } catch (err) {
-      // קוד לטיפול בשגיאות
   }
       // Insert the new post into the collection
       await postCollection.insertOne(newPost);
@@ -637,7 +635,7 @@ app.get('/search', async (req, res) => {
     const db = client.db('social');
     const userCollection = db.collection('users');
     const users = await userCollection.find({ name: { $regex: name, $options: 'i' } }).toArray();
-    res.json({ users }); // שליחת התוצאות כתשובה בפורמט JSON
+    res.json({ users }); 
   } catch (error) {
     console.error('שגיאה בחיפוש המשתמשים:', error);
     res.status(500).json({ message: 'שגיאה בחיפוש המשתמשים' });
@@ -656,10 +654,8 @@ app.get('/user-profile', (req, res) => {
         return;
     }
 
-    // החלפת המידע ב-HTML
     const updatedHtml = html.replace('{{user_id}}', userId);
 
-    // שליחת ה-HTML כתשובה
     res.render(updatedHtml);
 });
 });
@@ -712,8 +708,8 @@ post.comments.push(newComment);
 
     return res.status(201).json(newComment);
   } catch (error) {
-    console.error('שגיאה בשמירת התגובה:', error);
-    return res.status(500).json({ message: 'שגיאה בשמירת התגובה' });
+    console.error(' error saving comment :', error);
+    return res.status(500).json({ message: 'error saving comment  ' });
   }
 });
 
@@ -739,7 +735,7 @@ app.post('/add-like', async (req, res) => {
     const post = await postsCollection.findOne({ _id: new ObjectId(postId) });
 
     if (!post) {
-      return res.status(404).json({ message: 'פוסט לא נמצא' });
+      return res.status(404).json({ message: 'post not found  ' });
     }
 
     const newLike = {
@@ -747,17 +743,15 @@ app.post('/add-like', async (req, res) => {
       userName: userName,
     };
 
-    //const commentsCollection = db.collection('comments');
-    //const savedComment = await commentsCollection.insertOne(newComment);
+    
 
     if (!post.likes) {
-      post.likes = []; // אם המערך לא קיים, יש ליצור אותו כמערך ריק
+      post.likes = []; 
     }
     
-    // הוספת התגובה החדשה לרשימת התגובות של הפוסט
+   
 post.likes.push(newLike);
 
-    // עדכון הפוסט במסד הנתונים
     await postsCollection.updateOne({ _id: post._id }, { $set: { likes: post.likes } });
 
 
@@ -802,10 +796,10 @@ app.post('/remove-like', async (req, res) => {
     await postsCollection.updateOne({ _id: post._id }, { $set: { likes: post.likes } });
 
 
-    return res.status(200).json({ message: 'הלייק הוסר בהצלחה' });
+    return res.status(200).json({ message: 'like removed' });
   } catch (error) {
-    console.error('שגיאה בהסרת הלייק:', error);
-    return res.status(500).json({ message: 'שגיאה בהסרת הלייק' });
+    console.error('error removing like:', error);
+    return res.status(500).json({ message: 'error removing like  ' });
   }
 });
 
@@ -1030,13 +1024,12 @@ async function IsUserParticipantInGroup(userId, groupId) {
 
     const groupObjectId = new ObjectId(groupId);
 
-    // בדוק אם המשתמש נמצא ברשימת המשתתפים של הקבוצה
     const group = await groupCollection.findOne({ _id: groupObjectId, participants: userId });
 
-    return !!group; // אם המשתמש הוא משתתף, החזר ערך נכון, אחרת ערך שקר
+    return !!group; 
   } catch (error) {
     console.error(error);
-    return false; // במקרה של שגיאה, נחזיר ערך שקר
+    return false; 
   } 
 }
 
@@ -1241,14 +1234,13 @@ app.delete('/delete-post/:postId', isLoggedIn, async (req, res) => {
 
 app.post('/api/manager-login', async (req, res) => {
   const { groupId, username, password } = req.body;
-  // מצא את המנהל במסד הנתונים (בצע בדיקות אימות נאותות)
   const manager = await findManagerByUsername(groupId, username);
   if (manager && bcrypt.compareSync(password, manager.password)) {
-    req.session.managerId = manager.username; // שמירת מזהה המנהל בסשן
+    req.session.managerId = manager.username; 
 
-    res.json({ isManager: true }); // אם ההתחברות הצליחה
+    res.json({ isManager: true }); 
   } else {
-    res.status(401).json({ isManager: false }); // אם ההתחברות נכשלה
+    res.status(401).json({ isManager: false }); 
   }
 });
 
@@ -1261,9 +1253,7 @@ async function findManagerByUsername(groupId, username) {
 
     const groupObjectId = new ObjectId(groupId);
 
-    // מחפש את הקבוצה שבה המנהל עם שם המשתמש הנתון
     const group = await groupCollection.findOne({ _id: groupObjectId, 'adminLogInData.username': username });
-    // אם נמצאת קבוצה עם מנהל כזה, החזר את פרטי המנהל
     return group ? group.adminLogInData : null;
   } catch (error) {
     console.error('Error in findManagerByUsername:', error);
@@ -1285,7 +1275,7 @@ function isManager(req, res, next) {
 
 
 
-const MessageModel = require('./models/MessageModel'); // מניח שיש לך כבר מודל כזה
+const MessageModel = require('./models/MessageModel'); 
 const userSockets= new Map();
 
 const http = require('http');
@@ -1300,13 +1290,11 @@ const io = socketIo(server);
 io.on('connection', (socket) => {
   console.log('New client connected');
 
-  // כאשר משתמש מתחבר, שמור את הסוקט שלו
   socket.on('register', userId => {
     userSockets.set(userId, socket);
     console.log(`User ${userId} registered with socket id: ${socket.id}`);
   });
 
-  // הוספת async כאן
   socket.on('sendMessage', async ({ senderId, receiverId, text }) => {
     console.log(`Received message from ${senderId} to ${receiverId}: ${text}`);
 
@@ -1316,8 +1304,6 @@ io.on('connection', (socket) => {
     await collection.insertOne(message);
     console.log('Message saved to database');
 
-    // שלח הודעה למקבל אם הוא מחובר
-// שלח הודעה חזרה לשולח לאישור שההודעה נשלחה
 if (userSockets.has(senderId)) {
   userSockets.get(senderId).emit('messageSent', text);
 }
@@ -1328,7 +1314,6 @@ if (userSockets.has(senderId)) {
   });
 
   socket.on('disconnect', () => {
-    // מחק את המשתמש מהמפה כאשר הוא מתנתק
     userSockets.forEach((value, key) => {
       if (value === socket) {
         userSockets.delete(key);
@@ -1364,11 +1349,11 @@ app.get('/api/post-count-per-month', async (req, res) => {
     const db = client.db('social');
     const results = await db.collection('posts').aggregate([
       {
-        $match: { originType: 'homepage' } // סנן רק פוסטים שנוצרו בדף הבית
+        $match: { originType: 'homepage' } 
       },
       {
         $group: {
-          postCount: { $sum: 1 }, // ספור את מספר הפוסטים
+          postCount: { $sum: 1 }, 
           _id: {
             year: { $year: "$created" },
             month: { $month: "$created" }
@@ -1377,11 +1362,10 @@ app.get('/api/post-count-per-month', async (req, res) => {
         }
       },
       {
-        $sort: { "_id.year": 1, "_id.month": 1 } // מיין לפי שנה וחודש
+        $sort: { "_id.year": 1, "_id.month": 1 } 
       }
     ]).toArray();
 
-    console.log(results);
     res.json(results);
   } catch (error) {
     console.error('Error in aggregation:', error);
@@ -1457,15 +1441,12 @@ app.get('/search-plants', isLoggedIn, async (req, res) => {
       if (difficultyLevel) query['plantDetails.difficultyLevel'] = difficultyLevel;
       if (watering) query['plantDetails.watering'] = watering;
 
-      console.log("Final query object:", query);
 
       const client = await MongoDBClient.getClient();
       const db = client.db('social');
       const posts = await db.collection('posts').find(query).toArray();
 
-      console.log(`Found ${posts.length} posts matching query`);
 
-      console.log(posts);
       await Promise.all(posts.map(async (post) => {
           const postUser = await db.collection('users').findOne({ _id: post.user });
           

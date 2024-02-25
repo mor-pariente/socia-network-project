@@ -3,7 +3,6 @@
  //functions
  import {createProfileButton} from "./postsController.js"
 
-// טעינת שם המשתמש
 export async function loadUserName(elementId, userName,) {
     
       const userNameElement = document.getElementById(elementId);
@@ -23,7 +22,6 @@ export async function loadUserName(elementId, userName,) {
   };
   
 
-// עדכון שם המשתמש בדף
 export function CapitalizedName(userName) {
   
     let capitalizedUserName = ''; 
@@ -41,11 +39,10 @@ export function CapitalizedName(userName) {
         capitalizedUserName = userNameCapitalized;
     }
   
-    return capitalizedUserName; // מחזירים את השם המעוצב
+    return capitalizedUserName; 
   };
   
 
-// העלאת התמונה וקריאה לשרת לקבלת התמונה המעודכנת
 
 
 
@@ -77,7 +74,6 @@ export async function getConnectedUserName() {
       console.error(error);
     }
 };
-// קריאה לשרת לקבלת התמונה המעודכנת
 export function fetchUpdatedProfileImage(userId, element) {
   
         
@@ -137,7 +133,6 @@ export async function fetchUpdatedProfileImage2(userId) {
 };
 
 
-// עדכון תמונת הפרופיל בדף
 function updateProfileImage(imageBase64, elementId) {
     const profileImage = document.getElementById(elementId);
     
@@ -152,7 +147,6 @@ export function updateCoverImage(imageBase64) {
 
 
 
-// הסתרת או הצגת הקונטיינר להעלאה
 export function toggleUploadContainerVisibility(visible) {
   const uploadContainer = document.getElementById("uploadContainer");
   uploadContainer.style.display = visible ? "block" : "none";
@@ -189,7 +183,6 @@ export async function loadFriendRequests(userId) {
       const data = await response.json();
       const friends = data.friendRequests;
       // Log friend requests
-      console.log("friends req:", friends);
 
       // Get the container for friend requests
       const friendsRqContainer = document.getElementById('friendRequestsDropdown');
@@ -238,7 +231,6 @@ async function confirmReq(requesterId, acceptorId) {
       }
 
       const data = await response.json();
-      console.log(data.message);
       // Update UI accordingly
   } catch (error) {
       console.error('Error:', error);
@@ -261,7 +253,6 @@ async function deleteReq(requesterId, acceptorId) {
       }
 
       const data = await response.json();
-      console.log(data.message);
       // Update UI accordingly
   } catch (error) {
       console.error('Error:', error);
@@ -281,8 +272,6 @@ export function sendFriendRequest(connectedUserId, potentialFriendId) {
   })
   .then(response => response.json())
   .then(data => {
-      console.log(data.message);
-      // Update the UI accordingly
   })
   .catch(error => console.error('Error:', error));
 }

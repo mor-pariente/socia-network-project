@@ -6,12 +6,12 @@ const messageSchema = new Schema({
     senderId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'User' // הנחה שיש לך מודל משתמש בשם 'User'
+        ref: 'User' 
     },
     receiverId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'User' // הנחה שיש לך מודל משתמש בשם 'User'
+        ref: 'User' 
     },
     text: {
         type: String,
