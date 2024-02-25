@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link href="index.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="288454897898-a2dej48iutcm4pn4heg9jr1grjeearok.apps.googleusercontent.com">
+        <title>profile</title>
+    
+
+
+
+   
+    
+</head>
+<body>
+  <div class="bar">
+    <button class="custom-button" onclick="window.location.href='/logout'">
+  Log Out</button>
+
+<button class="custom-button" onclick="window.location.href='/home'">
+  Home</button>
+  <button class="custom-button" id="friendRequestsButton">Friend Requests</button>
+  <button class="custom-button" onclick="window.location.href='https://www.facebook.com/profile.php?id=61556487513960'">Facebook</button>
+
+
+</div>
+<div class="uploadContainer" id="uploadMessage">
+  <div id="Message"></div>
+</br>
+  <button id="OKButton" class="custom-button"  >OK</button> 
+  
+
+  
+
+</div>
+<div id="friendRequestsDropdown" class= "dropdown" style="display: none;">
+  <!-- Friend requests will be populated here -->
+</div>
+  <button id="statistics-button" class = "custom-button" onclick="window.location.href='/statistics' ">statistics</button>
+  <button id="plantStore-button" class = "custom-button" onclick="window.location.href='/plantStore' ">PlantStore</button>
+
+  <div id="search-container" class="dropdown">
+    <input type="text" id="search-input" placeholder>
+    <script>
+      document.getElementById('search-input').placeholder =   'search profile';
+  </script>
+    <button  id="search-button"></button>
+    <div id="search-menu">
+    </div>
+  </div>
+<button class="custom-button" id="profileBtn">
+    <span id="userName"></span>
+    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="icon" class="button-icon updetedProfilePhoto" id="small-profile-pic" >  </button>
+   </div></br></br>
+
+
+<div id="container">
+  <div id="coverPhotoContainer">
+  
+  
+  <img id="coverPhoto" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+  <button class="custom-button" id="deleteAccountButton" style="display: none;">Delete Account</button>
+  <button class="custom-button" id="updateCoverPhotoButton">Update Photo</button>
+  <button class="custom-button" id="addFriend">Add Friend</button>
+
+
+ 
+    <img  id="profilePhoto" class="updetedProfilePhoto" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+    <div class="uploadContainer" id="uploadContainer">
+      <button class="close-button custom-button" id="closeButton">X</button> <!-- כפתור האיקס -->
+
+      <input type="file" id="fileInput" class="custom-button" >
+     <button class="custom-button" id="uploadButton">Upload</button>
+     <div id="message"></div>
+  </div>
+  <button class="custom-button" id="updateProfilePhotoButton">Update Photo</button>
+ </div>
+ <div class="user-chat-container">
+  <span id="userNameTitle">USERNAME</span>
+  <button id="chat-with" class="white-custom-btn">chat</button>
+
+</div>
+
+ 
+
+
+</div>
+
+
+<div id="container">
+ 
+  <div class="post-form">
+    <div class="text-center">
+        <textarea id="postContent" placeholder="What are you thinking about?"></textarea>
+    </div>
+    <div id="previewContainer"></div>
+    
+    <div class="button-container">
+        <button class="custom-button" id="upload-Media">Upload Photo</button>
+        <button class="custom-button" id="post">Post</button>
+    </div>
+ </div>
+    
+     
+  <div id="posts-container">
+</div> 
+<button class="custom-button" id="load-more">load more</button>
+
+  <div class="uploadContainer" id="uploadContainer">
+    <button class="close-button custom-button" id="closeButton">X</button> <!-- כפתור האיקס -->
+
+    <input type="file" id="postfileInput" class="custom-button" >
+   <button class="custom-button" id="uploadfileButton">Upload</button>
+   <div id="message"></div>
+   
+</div>
+
+
+<div id="chat-container" style="display: none;">
+  <ul id="messages"></ul>
+  <form id="chat-form">
+      <input id="chat-input" autocomplete="off" placeholder="type your message..." />
+      <button class ="white-custom-bttn" type="submit">send</button>
+  </form>
+</div>
+
+
+ <script type="module" src="../public/profilePage.js"></script>
+
+
+
+
+</body>
+
+        
+
+
+
+    
+    
+</html>
+
+
+
+

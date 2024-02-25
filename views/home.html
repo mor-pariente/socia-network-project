@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link href="index.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <meta name="google-signin-client_id" content="288454897898-a2dej48iutcm4pn4heg9jr1grjeearok.apps.googleusercontent.com">
+        <title>home</title>
+    
+
+
+
+   
+    
+</head>
+<body>
+<div class="bar">
+    <button class="custom-button" onclick="window.location.href='/logout'">
+  Log Out</button>
+
+<button class="custom-button" onclick="window.location.href='/home'">
+  Home</button>
+  <button class="custom-button" id="friendRequestsButton">Friend Requests</button>
+  <button class="custom-button" onclick="window.location.href='https://www.facebook.com/profile.php?id=61556487513960'">Facebook</button>
+
+  <div id="search-container" class="dropdown">
+    <input type="text" id="search-input" placeholder>
+    <script>
+      document.getElementById('search-input').placeholder =   'search profile';
+  </script>
+    <button  id="search-button"></button>
+    <div id="search-menu">
+    </div>
+  </div>
+  <button id="statistics-button" class = "custom-button" onclick="window.location.href='/statistics' ">statistics</button>
+  <button id="plantStore-button" class = "custom-button" onclick="window.location.href='/plantStore' ">PlantStore</button>
+
+<button class="custom-button" id="profileBtn">
+    <span id="userName"></span>
+    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="icon" class="button-icon updetedProfilePhoto" id="small-profile-pic" >  </button>
+   </div></br></br>
+
+<div id="container">
+ 
+  <div class="post-form">
+    <div class="text-center">
+        <textarea id="postContent" placeholder="What are you thinking about?"></textarea>
+    </div>
+    <div id="previewContainer"></div>
+    
+    <div class="button-container">
+        <button class="custom-button" id="upload-Media">Upload Photo</button>
+        <button class="custom-button" id="post">Post</button>
+    </div>
+ </div>
+    
+     
+  <div id="posts-container">
+</div> 
+<button class="custom-button" id="load-more">load more</button>
+
+  <div class="uploadContainer" id="uploadContainer">
+    <button class="close-button custom-button" id="closeButton">X</button> <!-- כפתור האיקס -->
+
+    <input type="file" id="postfileInput" class="custom-button" >
+   <button class="custom-button" id="uploadfileButton">Upload</button>
+   <div id="message"></div>
+   
+</div>
+
+<div id= groups-container > 
+  <div id = groups-title> Groups </div>
+  <div class = group-btns></div>
+  <button class = white-custom-btn onclick="window.location.href='/group-form' ">new group + </button>
+</div>
+
+
+</div>
+<div class="uploadContainer" id="uploadMessage">
+  <div id="Message"></div>
+</br>
+  <button id="OKButton" class="custom-button"  >OK</button> 
+  
+
+  
+
+</div>
+<div id="friendRequestsDropdown" class= "dropdown" style="display: none;">
+  <!-- Friend requests will be populated here -->
+</div>
+
+
+
+
+
+<script type="module"  src="../public/homePage.js"></script>
+
+
+</body>
+
+        
+    
+
+    
+</html>
