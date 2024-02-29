@@ -6,7 +6,6 @@ import { loadUserName, fetchUpdatedProfileImage, toggleUploadContainerVisibility
 import { searchProfile } from "./searchController.js";
 import { profileButton } from "./profileController.js";
 
-// טעינת שם משתמש ותמונת פרופיל
 const uploadedFiles = [];
 
 
@@ -87,7 +86,6 @@ export function loadMorePosts(connectedUserId, connectedUserName, originType, gr
     loadMorePostsFromServer(skip, postsPerLoad,connectedUserId, connectedUserName, originType, groupId,profileId);
 };
 
-// טעינת פוסטים מהשרת
 function loadMorePostsFromServer(skip, limit, connectedUserId, connectedUserName, originType, groupId,profileId) {
   const urlParams = new URLSearchParams({
       skip, limit, originType, groupId, connectedUserId, profileId
@@ -99,10 +97,8 @@ function loadMorePostsFromServer(skip, limit, connectedUserId, connectedUserName
       success: function (data) {
           const posts = data.posts;
           handleLoadedPosts(posts, skip, limit, connectedUserId, connectedUserName);
-          console.log(posts);
       },
       error: function (error) {
-          console.log('שגיאה בשליפת הפוסטים:', error);
       }
   });
 }
@@ -118,7 +114,6 @@ export function handleLoadedPosts(posts, skip, limit,connectedUserId, connectedU
     }
 };
 
-// הצגת הפוסטים בקונטיינר
 function displayPosts(posts, connectedUserId,connectedUserName) {
     const postsContainer = $('#posts-container');
 
@@ -138,7 +133,6 @@ function deletePost(postId) {
       url: `/delete-post/${postId}`,
       method: 'DELETE',
       success: function(response) {
-          // הסר את הפוסט מה-UI, למשל:
           $(`#${postId}`).remove();
           alert('Post deleted successfully');
       },
@@ -212,7 +206,6 @@ function createPostElement(post, connectedUserId, connectedUserName) {
     const profilePic = createProfilePic(post.user.profilePicBase64);
     const contentElement = $('<p>', { class: 'content', id: 'content'+post._id }).text(post.content);
 
-    // בדיקה אם יש פרטי צמח והוספתם לאלמנט התוכן
     if (post.originType === 'plant' && post.plantDetails) {
         const plantDetailsElement = $('<div>', { class: 'plant-details' });
         const plantDetailsContent = `
@@ -227,7 +220,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
 
         `;
         plantDetailsElement.html(plantDetailsContent);
-        contentElement.append(plantDetailsElement); // הוספת פרטי הצמח לאלמנט התוכן
+        contentElement.append(plantDetailsElement); 
     }    
   
     profileButton.append(profilePic);
@@ -283,7 +276,6 @@ function createPostElement(post, connectedUserId, connectedUserName) {
   
   
     likeButton.click(async function () {
-      console.log(post.likes);
     
       
 
@@ -298,45 +290,34 @@ function createPostElement(post, connectedUserId, connectedUserName) {
           }),
           contentType: 'application/json',
           success: function (newLike) {
-           // liked = true; // שינה את המשתנה liked ל true
-            console.log('לייק נוסף בהצלחה');
             post.likes.push(newLike);
-            // יצר את מבנה ה-HTML שמייצג את הלייק החדש
-            // הוסף את המבנה החדש לפוסט ב-HTML
-            // עדכן את כפתור הלייקים
-            //$(".likes").text(post.likes.length + 1 + ' likes');
+       
             likes.text(post.likes.length  + ' likes')
 
           },
           error: function (error) {
             console.error(error);
-            alert('שגיאה בשמירת הלייק');
           },
         });
       } else {
-        // כאשר המשתמש לוחץ שוב על הלייק
         $.ajax({
           type: 'POST',
-          url: '/remove-like', // הגדר את הנתיב להסרת הלייק (אתה צריך לממש אותו בשרת)
+          url: '/remove-like', 
           data: JSON.stringify({
             postId: post._id,
             userId: userId,
           }),
           contentType: 'application/json',
           success: function (removedLike) {
-            //liked = false; // שינה את המשתנה liked ל false
-            console.log('הלייק הוסר בהצלחה');
+        
             const index = post.likes.findIndex(item => item.user === userId);
             if (index !== -1) {
               post.likes.splice(index, 1);
-              console.log('removd');
             }
-            // עדכן את כפתור הלייקים חזרה למצב הרגיל
             likes.text(`${post.likes.length} likes`);
           },
           error: function (error) {
             console.error(error);
-            alert('שגיאה בהסרת הלייק');
           },
         });
       }
@@ -368,25 +349,19 @@ function createPostElement(post, connectedUserId, connectedUserName) {
     return $('<textarea>', { class: 'comment-area' }).attr('placeholder', 'comment something...');
   };
   
-  function createPostCommentButton(post, writeComment, commentDisplay, comments) {////////להוסיף כאן אפנד תגובה חדשה לדיספליי
+  function createPostCommentButton(post, writeComment, commentDisplay, comments) {
     const postCommentBtn = $('<button>', { class: 'custom-button' }).text('Post Comment');
     postCommentBtn.click(async function () {
-      // לקבל את התוכן של התגובה מהתיבת הטקסט
       const commentText = writeComment.val();
     
-      // בדוק אם התוכן אינו ריק
       if (commentText.trim() === '') {
-        alert('אנא הזן תוכן לתגובה');
-        writeComment.val(''); // מוסיף את זהו הקוד לאחר ההודעה בכדי לנקות את תיבת הטקסט
+        writeComment.val(''); 
         return;
       };
     
-      // אפשר לשלוח את התגובה באמצעות AJAX
       const userId = await getConnectedUserID();
       const userName = await getConnectedUserName();
     
-      console.log(userId);
-      console.log(userName);
     
       $.ajax({
         type: 'POST',
@@ -399,27 +374,20 @@ function createPostElement(post, connectedUserId, connectedUserName) {
         }),
         contentType: 'application/json',
         success: function (newComment) {
-          console.log('yessssss');
-          console.log('התגובה נוצרה בהצלחה');
 
-          // יצר את מבנה ה-HTML שמייצג את התגובה החדשה
           const newCommentElement = createCommentElement(newComment);
       
-          // הוסף את המבנה החדש לפוסט ב-HTML
           commentDisplay.append(newCommentElement);
-          // נקה את תיבת הטקסט לתגובה
           writeComment.val('');
-          //לעדכן את כפתוק קומנט 
           $(".comments").text(post.comments.length+1 + ' comments');
         },
         error: function (error) {
           console.error(error);
-          alert('שגיאה בשמירת התגובה');
         },
       });
     });
     
-    return postCommentBtn; // הוספתי סוגריים סופית כאן
+    return postCommentBtn; 
   };
   
   
@@ -442,7 +410,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
       const commentElement = $('<p>', { class: 'comment-element'});
 
       const content = $('<div>', { text: comment.content });
-      const prflBtn = createProfileButton(comment.userName, comment.user);/////////////////////////חסר תמונה ושם
+      const prflBtn = createProfileButton(comment.userName, comment.user);
       const formattedDate = new Date(comment.created).toLocaleString();
       const timeStamp = createCommentTimestamp(formattedDate);
   
@@ -470,7 +438,7 @@ function createPostElement(post, connectedUserId, connectedUserName) {
 
       })
       .catch(error => {
-        console.error('שגיאה בשליפת תמונת הפרופיל:', error);
+        console.error( error);
       });
 
 
@@ -523,7 +491,6 @@ function createPostElement(post, connectedUserId, connectedUserName) {
 
 
 
-// העלאת הקבצים למערך
 function handleFileUpload() {
   const previewContainer = document.getElementById('previewContainer');
   previewContainer.innerHTML = ''; // Clear existing images
@@ -621,7 +588,7 @@ function handlePost( originType, groupId) {
             return;
         }
     }
-      formData.append('plantDetails', JSON.stringify(plantDetails)); // הוספת plantDetails כמחרוזת JSON
+      formData.append('plantDetails', JSON.stringify(plantDetails)); 
   }
     getLocation().then(locationData => {
       formData.append('location', JSON.stringify(locationData));
@@ -664,25 +631,19 @@ function editPost(post) {
     $(`#editForm_${post._id}`).remove();
 }
 
-// יצירת טופס עריכה חדש
 const editForm = $('<form>').addClass('edit-form').attr('id', `editForm_${post._id}`);
-  // יצירת טופס עריכה עם התוכן הנוכחי של הפוסט
 
 
   const postElement = $("#" + post._id);
-  console.log('Post element:', postElement.length); // צריך להדפיס 1 אם האלמנט קיים
   const editTextarea = $('<textarea>').val(post.content).addClass('edit-textarea');
   const submitButton = $('<button>').text('OK').addClass('white-custom-btn');
   const cancelButton = $('<button>').text('Cancel').addClass('white-custom-btn');
-console.log('editPostttttttttt');
   editForm.append(editTextarea, submitButton, cancelButton);
 
-  // הוספת הטופס לדום, למשל מתחת לפוסט או בתוך דיאלוג מודאלי
   postElement.append(editForm);
 
-  // הגדרת אירוע שליחת הטופס
   editForm.on('submit', function(e) {
-      e.preventDefault(); // מונע את טעינת הדף מחדש
+      e.preventDefault(); 
 
       const updatedContent = editTextarea.val();
       $.ajax({
@@ -690,19 +651,18 @@ console.log('editPostttttttttt');
           method: 'POST',
           data: { content: updatedContent },
           success: function(response) {
-              // עדכון התוכן של הפוסט בדום
+             
               $(`#content${post._id}`).text(updatedContent);
-              editForm.remove(); // הסרת הטופס אחרי שינוי
+              editForm.remove(); 
               
           },
           error: function(error) {
-              alert('שגיאה בעריכת הפוסט');
+              alert('error');
           }
       });
   });
 
-  // אירוע לביטול העריכה
   cancelButton.on('click', function() {
-      editForm.remove(); // הסרת הטופס
+      editForm.remove(); 
   });
 }

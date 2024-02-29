@@ -7,8 +7,7 @@ import {profileButton} from "../controller/profileController.js"
 
 getConnectedUserName()
   .then(userName => {
-    console.log(userName);
-    loadUserName('userName', userName); // קריאה לפונקציה המשתמשת במזהה
+    loadUserName('userName', userName); 
     postsEventListeners('homepage', null);
     getConnectedUserID()
     .then(userId => {

@@ -9,20 +9,20 @@ body{
   margin: 5px;
 }
 .user-name-post {
-  text-align: right; /* מיושר לימין */
+  text-align: right; 
   display: block;
   font-size: 15px;
   position: relative;
-   /* הנמליך את הטקסט למעלה */
+  
   padding-right: 10px;
-  padding-left: 0px; /* מוסיף שוליים בצדדים שמאליים */
-  white-space: nowrap; /* מונע מהטקסט לשבור לשורות חדשות */
-  max-width: 100%; /* אורך מרבי של 100% מהגודל הזמין בתוך הכפתור */
+  padding-left: 0px; 
+  white-space: nowrap; 
+  max-width: 100%; 
 }
 .profileButtons .user-name-post {
-  text-align: right; /* מיושר לימין */
+  text-align: right; 
   font-size: 15px;
-  white-space: nowrap; /* מונע שבירת שורות */
+  white-space: nowrap; 
   width: fit-content;
 }
 #postContent #commwnt-area{
@@ -61,7 +61,7 @@ body{
   margin-bottom: 12px; 
 }
 .post-form {
-  text-align: center; /* מרכז את הטקסט */
+  text-align: center; 
   background-color: rgb(241, 240, 240);
   width: 800px;
   padding: 10px;
@@ -69,7 +69,7 @@ body{
 }
 
 #groupNameContainer{
-  text-align: center; /* מרכז את הטקסט */
+  text-align: center; 
   background-color: #0000009b;
   width: 800px;
   padding: 10px;
@@ -82,9 +82,9 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px; /* רווח בין הכפתורים לתיבת הטקסט */
-  display: inline-block; /* הגדרה של הכפתורים להיות inline-block */
-  margin: 5px; /* רווח בין הכפתורים */
+  margin-top: 10px; 
+  display: inline-block; 
+  margin: 5px; 
 }
 
 .posts-container {
@@ -117,7 +117,7 @@ body{
   grid-gap: 10px;
   object-fit:fill;
 
-  grid-auto-rows: minmax(100px, auto); /* גובה אוטומטי לפי התוכן */
+  grid-auto-rows: minmax(100px, auto); 
 }
 
 
@@ -199,20 +199,20 @@ margin-right: 25px;
 
 }
 .button-icon{
-  width: 25px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  height: 25px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  position: absolute; /* יוסיף את התכונה position: absolute; לתמונה */
-  right: 5px; /* מיקום יחסי משמאל */
-  top: 50%; /* מיקום יחסי במרכז לגובה */
-  transform: translateY(-50%); /* מיקום אנכי מרכזי לאורך */
-  border-radius: 50%; /* כדי ליצור תמונה עגולה */
-  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  width: 25px; 
+  height: 25px;
+  position: absolute; 
+  right: 5px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  border-radius: 50%; 
+  overflow: hidden; 
 } 
 
 
 .like-icon{
-  width: 20px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  height: 20px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  width: 20px; 
+  height: 20px; 
   position:relative;
   top:2px;
 } 
@@ -230,7 +230,7 @@ margin-right: 25px;
     font-family: 'Roboto', sans-serif;
     color: rgb(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.412); 
-    z-index: 2; /* עושה את האלמנט להיות עליון בציר Z */ 
+    z-index: 2; 
 }
 
 
@@ -241,9 +241,9 @@ left:2%;
 
 }
 #updateProfilePhotoButton{
-  position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
-  bottom: -120px; /* מיקום בתחתית הקאבר */
-  right: 120px; /* מיקום בצד הימני של הקאבר */
+  position: absolute; 
+  bottom: -120px; 
+  right: 120px; 
   z-index: 3;
 }
 
@@ -251,17 +251,17 @@ left:2%;
 
 
 #updateCoverPhotoButton, #addFriend{
-    position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
-    bottom: 20px; /* מיקום בתחתית הקאבר */
-    left: 20px; /* מיקום בצד הימני של הקאבר */
+    position: absolute; 
+    bottom: 20px; 
+    left: 20px; 
     z-index: 3;
     
 } 
 #uploadContainer {
-    display: none; /* הסתר את הקונטיינר בתחילה */
+    display: none; 
 }
 #uploadMessage {
-  display: none; /* הסתר את הקונטיינר בתחילה */
+  display: none; 
 }
 #container {
     background-color: rgba(255, 255, 255, 0.346);
@@ -275,7 +275,7 @@ left:2%;
 
     margin: 0 auto;
     margin-top: 2%;
-    z-index: 1; /* עושה את האלמנט להיות עליון בציר Z */
+    z-index: 1; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -286,15 +286,15 @@ left:2%;
       color: white;
 
       position: absolute;
-    top: 50%; /* מצביע לחצי העליון של התמונה */
-    left: 50%; /* מצביע לחצי השמאלי של התמונה */
-    transform: translate(-50%, -50%); /* מתקן את המיקום כך שהקונטיינר יהיה במרכז התמונה */
-      background-color: rgba(0, 0, 0, 0.515); /* רקע חצי שקוף */
-      padding: 20px; /* הצגת מרווח מסביב לתוכן שבתוך ה-container */
-      box-shadow: 0px -10px 10px #00000049; /* הצללה כדי ליצור את האפקט */
-      border-radius: 50px; /* ייעוץ את ה-container לעגולה */
-      text-align: center; /* מרכז את התוכן שבתוך ה-container */
-      z-index: 3; /* כדי להציב את ה-container מעל תמונת הפרופיל */
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+      background-color: rgba(0, 0, 0, 0.515);
+      padding: 20px; 
+      box-shadow: 0px -10px 10px #00000049; 
+      border-radius: 50px; 
+      text-align: center; 
+      z-index: 3; 
   
 }    
 .profileButtons {
@@ -307,14 +307,12 @@ left:2%;
   border: none;
   height: 50px;
   width: fit-content;
-  padding-left: 50px; /* הרוחב של הפינה השמאלית */
+  padding-left: 50px; 
 
-  /* סגנון של הטקסט בפינת הכפתור */
-  position: relative; /* מתוך התכונות של הכפתור */
+  position: relative; 
   
 }
 
-/* סגנון של הטקסט שבתוך הכפתור */
 
 .custom-button {
         background-color: #0000009b;
@@ -326,7 +324,7 @@ left:2%;
         font-size: 12px;
         padding: 10px 20px;
         cursor: pointer;
-        position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+        position: relative; 
         border: none;
         max-height: 35px;
         min-height: 35px;
@@ -346,7 +344,7 @@ display: inline-block;
 font-size: 12px;
 padding: 10px 20px;
 cursor: pointer;
-position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+position: relative; 
 border: none;
 max-height: 35px;
 min-height: 35px;
@@ -365,7 +363,7 @@ z-index: 3;
   display: inline-block;
   font-size: 20px;
   cursor: pointer;
-  position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+  position: relative; 
   border: none;
   height: 25px;
   width: 25px;
@@ -385,7 +383,7 @@ z-index: 3;
   display: inline-block;
   font-size: 12px;
   cursor: pointer;
-  position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+  position: relative; 
   top:5px;
   border: none;
   height: 35px;
@@ -418,8 +416,8 @@ z-index: 3;
 }
 .user-chat-container {
   display: flex;
-  align-items: center; /* אופציונלי - ליישר את האלמנטים לאמצע */
-  gap: 10px; /* יוצר ריווח בין הכפתור לספאן */
+  align-items: center; 
+  gap: 10px; 
   background-color: #4e4e4e47;
   padding: 1%;
   padding-left: 3%;
@@ -439,9 +437,9 @@ z-index: 3;
        
 }
 #coverPhotoContainer {
-        position: relative; /* כדי לאפשר מיקום יחסי של תמונת הפרופיל בתוך הקאבר */
-        width: 100vh; /* רוחב קבוע לקונטיינר */
-        height: 50vh; /* גובה קבוע לקונטיינר */
+        position: relative; 
+        width: 100vh; 
+        height: 50vh; 
         
 }
 .icons{
@@ -450,9 +448,9 @@ z-index: 3;
         background-position: center;
 }
 #coverPhoto {
-width: 100%; /* רוחב קבוע לתמונת הקאבר */
-height: 100%; /* גובה קבוע לתמונת הקאבר */
- object-fit: cover; /* הצגת תמונת הקאבר כך שתמלא את הקונטיינר */
+width: 100%; 
+height: 100%; 
+ object-fit: cover; 
 }
       
 
@@ -464,11 +462,11 @@ height: 100%; /* גובה קבוע לתמונת הקאבר */
   display: inline-block;
 }
 .profilePics{
-  width: 40px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  height: 40px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  width: 40px; 
+  height: 40px; 
   
-  border-radius: 50%; /* כדי ליצור תמונה עגולה */
-  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  border-radius: 50%; 
+  overflow: hidden; 
   position: absolute;
   left: 5px;
  top: 5px;
@@ -481,13 +479,13 @@ height: 100%; /* גובה קבוע לתמונת הקאבר */
 
       
 #profilePhoto {
- position: absolute; /* מיקום אבסולוטי בתוך הקאבר */
- bottom: -130px; /* מיקום בתחתית הקאבר */
- right: 30px; /* מיקום בצד הימני של הקאבר */
+ position: absolute; 
+ bottom: -130px; 
+ right: 30px; 
  width: 300px; 
  height: 300px; 
- object-fit: cover; /* הצגת תמונת הפרופיל כך שתמלא את האלמנט */
- border-radius: 50%; /* ייעוץ את תמונת הפרופיל לעגולה */
+ object-fit: cover; 
+ border-radius: 50%; 
 box-shadow: 0px 0px 10px#00000049;
 z-index: 2;
 }
@@ -501,43 +499,43 @@ z-index: 2;
   font-size: 12px;
   padding: 10px 20px;
   cursor: pointer;
-  position: relative; /* יוסיף את התכונה position: relative; לכפתור */
+  position: relative; 
   border: none;
   max-height: 35px;
 }
 #search-button ,#add-participants-search-button{
   background-color:rgba(0, 0, 0, 0);
-  background-size: cover; /* כל התמונה תמלא את פני הכפתור */
-  color: transparent; /* מסתיר את הטקסט שבתוך הכפתור */
+  background-size: cover; 
+  color: transparent; 
 
 border: none;
-  width: 17px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  height: 17px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  position: relative; /* יוסיף את התכונה position: absolute; לתמונה */
-  right: 20px; /* מיקום יחסי משמאל */
-  top: 10px; /* מיקום יחסי במרכז לגובה */
-  transform: translateY(-50%); /* מיקום אנכי מרכזי לאורך */
-  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  width: 17px; 
+  height: 17px; 
+  position: relative;
+  right: 20px; 
+  top: 10px; 
+  transform: translateY(-50%); 
+  overflow: hidden; 
   background-image: url("https://flaticons.net/icon.php?slug_category=science-technology&slug_icon=magnifying-glass");
   cursor: pointer;
 
 }
 input[type="text"]:focus {
-  outline: none; /* מסיר את המעגל שמסביב לאינפוט כאשר יש פוקוס */
-  border: none; /* מסיר את הגבול כאשר יש פוקוס */
+  outline: none; 
+  border: none; 
 }
 textarea:focus{
-  outline: none; /* מסיר את המעגל שמסביב לאינפוט כאשר יש פוקוס */
-  border: none; /* מסיר את הגבול כאשר יש פוקוס */
+  outline: none; 
+  border: none; 
 }
 
 .profilePicsSearch{
 
-  width: 80px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
-  height: 80px; /* ניתן לשנות את הערך לפי הגודל שברצונך */
+  width: 80px; 
+  height: 80px; 
   
-  border-radius: 50%; /* כדי ליצור תמונה עגולה */
-  overflow: hidden; /* כדי להסתיר חלקים מיותרים מחוץ למעגל */
+  border-radius: 50%; 
+  overflow: hidden; 
   position: relative;
   left: 5px;
  top: 5px;
@@ -559,8 +557,8 @@ textarea:focus{
 }
 .dropdown  {
   width: 100%;
-  display: flex; /* הצגת הרכיבים בקונטיינר בצורה חדישה */
-  justify-content: center; /* מיקום אופקי במרכז הקונטיינר */
+  display: flex; 
+  justify-content: center; 
   align-items: center;
   position: fixed;
   top: 10px; 
@@ -623,10 +621,10 @@ right: -10px;
 #remove-list{
   padding: 10px;
   border-radius: 5px;
-  position: fixed; /* הגדר כיוון מיקום קבוע */
-  top: 60px; /* מרווח מלמעלה */
-  right: 50px; /* מרווח מצד ימין */
-  width: 180px; /* הגבל את הרוחב ל-30% מרוחב המסך */
+  position: fixed; 
+  top: 60px; 
+  right: 50px; 
+  width: 180px; 
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -646,8 +644,8 @@ button:hover{background-color:#00000052};
 }
 
 #add-participants-search-container{
-  display: none; /* הצגת הרכיבים בקונטיינר בצורה חדישה */
-  justify-content: center; /* מיקום אופקי במרכז הקונטיינר */
+  display: none;
+  justify-content: center;
   align-items: center;
 }
 
@@ -675,13 +673,13 @@ button:hover{background-color:#00000052};
 }
 
 .sender {
-  background-color: rgb(108, 110, 108); /* צבע לדוגמה, ניתן לשנות */
+  background-color: rgb(108, 110, 108); 
   margin-left: auto;
   margin-right: 0;
 }
 
 .receiver {
-  background-color: #696969; /* צבע לדוגמה, ניתן לשנות */
+  background-color: #696969;
   margin-left: 0;
   margin-right: auto;
 }

@@ -13,7 +13,7 @@ groupId: {
     required: function() { return this.originType === 'group'; }
 },
   content: String,
-  media: Array, // שדה לתמונה, כאשר הערך הוא מזהה התמונה במסד הנתונים או URL
+  media: Array, 
   created: { type: Date, default: Date.now },
   location: {
     type: {
@@ -49,7 +49,7 @@ groupId: {
     }
   ],
   
-  likes: [{ // מערך של מזהי יוצרי הלייקים
+  likes: [{ 
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   userName: { type: String }
 

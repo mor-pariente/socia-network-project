@@ -4,7 +4,7 @@ import { loadUserName, fetchUpdatedProfileImage, toggleUploadContainerVisibility
 
 getConnectedUserName()
   .then(userName => {
-    loadUserName('userName', userName); // קריאה לפונקציה המשתמשת במזהה
+    loadUserName('userName', userName); 
     getConnectedUserID()
     .then(userId => {
       fetchUpdatedProfileImage(userId,"small-profile-pic");

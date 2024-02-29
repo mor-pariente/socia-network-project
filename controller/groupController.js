@@ -67,7 +67,6 @@ function handleRegistration(event) {
     }),
     contentType: 'application/json',
     success: function () {
-      console.log('new group created');
       window.location.href = "/home"; // Redirect to home page after creating the group
     },
     
@@ -78,7 +77,6 @@ function handleRegistration(event) {
   });
 
   // Log selected users
-  console.log("Selected group participants:", selectedUsers);
 })
 .catch(error => {
  console.error(error);
@@ -92,7 +90,6 @@ function handleRegistration(event) {
 export async function groupsBtns(connectedUserID) {
   try {
     const groups = await getMyGroups(connectedUserID);
-console.log(groups,'groups areeeeee');
     const promises = groups.map(group => createGroupBttn(group, connectedUserID));
     await Promise.all(promises);
   } catch (error) {
@@ -114,7 +111,7 @@ export function getMyGroups(userId) {
       const data = await response.json();
       resolve(data);
     } catch (error) {
-      console.log('noo groups');
+      console.log(error);
 
     }
   });
@@ -180,18 +177,12 @@ addParticipantsSearchButton.addEventListener('click', function () {
     });
 
     loadUserName('userNameTitle', group.groupName);
-    //const userId = await getConnectedUserID();
+    
     managerLogIn(groupId, group.admin);
 
-    //console.log(group.admin);
-    //if (userId == group.admin) {
-    //  document.getElementById("updateCoverPhotoButton").style.display = "block";
-   // }
-
+    
     fetchUpdatedProfileImage(userId, "small-profile-pic");
-    //const imageBase64 = await getImage(group.coverPhoto);
-    //updateCoverImage(imageBase64);
-
+    
     return group;
   } catch (error) {
     console.error(error);
@@ -215,7 +206,6 @@ async function managerLogIn(groupId,groupAdmin)
         },
         success: function(response) {
             if (response.isManager) {
-              console.log('admin logged in');
               $('#managerLoginForm').toggle();
               isManagerLoggedIn=true;
               displayGroupMembers(groupId,groupAdmin)
@@ -237,16 +227,11 @@ async function managerLogIn(groupId,groupAdmin)
 export async function getGroup(groupId, userId){
   const response = await fetch(`/api/getGroup?groupId=${groupId}&userId=${userId}`);
   if (!response.ok) {
-  throw new Error(`שגיאת HTTP! סטטוס: ${response.status}`);
+  throw new Error(`${response.status}`);
 }
 const data = await response.json();
 return data.group;
 };
-
-// במקום המתאים בקובץ groupController.js שבצד הלקוח
-
-// הוספת הפונקציה לקבלת חברי הקבוצה בצד הלקוח
-// בקובץ שבו אתה רוצה להציג את רשימת חברי הקבוצה
 
 export async function displayGroupMembers(groupId, groupAdmin) {
   try {
@@ -261,17 +246,13 @@ export async function displayGroupMembers(groupId, groupAdmin) {
     const data = await response.json();
     const members = data.members;
 
-    // כאן אתה יכול לעדכן את הממשק הגרפי שלך עם רשימת חברי הקבוצה
-    console.log("Group members:", members);
 
-    // לדוגמה, אם יש לך אלמנט ב-HTML שבו אתה רוצה להציג את רשימת החברים:
     const membersContainer = document.getElementById('members-list');
     const removeContainer = document.getElementById('remove-list');
     const addContainer = document.getElementById('add-participants-search-container');
-    // הוספת כפתור לכל חבר בקבוצה
-    removeContainer.innerHTML = '';  // נקה את התוכן הקיים
+    removeContainer.innerHTML = '';  
 
-    membersContainer.innerHTML = '';  // נקה את התוכן הקיים
+    membersContainer.innerHTML = ''; 
       members.forEach(member => {
         createProfileButton(member.name, member._id).attr('class', 'white-custom-btn').appendTo(membersContainer);
         if(isManagerLoggedIn){
@@ -327,8 +308,6 @@ export async function displayGroupMembers(groupId, groupAdmin) {
   }
 }
 export function removeMember(memberId, groupId,groupAdmin) {
-  // כאן יש להשתמש ב-Fetch או אחרי להעביר את המידע לפונקציה המתאימה שתקרא לשרת
-  // ותבצע את הפעולה של הסרת החבר מהקבוצה
   fetch(`/removeMember?memberId=${memberId}&groupId=${groupId}`, {
     method: 'POST',
     headers: {
@@ -342,7 +321,6 @@ export function removeMember(memberId, groupId,groupAdmin) {
       return response.json();
     })
     .then(data => {
-      console.log('Member removed successfully:', data);
       displayGroupMembers(groupId,groupAdmin)
     })
     .catch(error => {
@@ -359,7 +337,6 @@ export async function deleteGroup (groupId){
 
       if (response.ok) {
         alert('Group deleted successfully');
-        // הפניה לדף אחר, לדוגמה לדף הבית
         window.location.href = '/home';
       } else {
         alert('Failed to delete group');
@@ -381,7 +358,6 @@ export function addMembers(members, groupId,groupAdmin) {
     }),
     contentType: 'application/json',
     success: function () {
-      console.log('added new members');
       
 
     },
@@ -392,6 +368,4 @@ export function addMembers(members, groupId,groupAdmin) {
     },
   });
 
-  // Log selected users
-  console.log("Selected group participants:", selectedUsers);
 };

@@ -28,11 +28,9 @@ $(document).ready(() => {
     var socket = io();
     socket.emit('register', connectedUserID);
     document.getElementById('chat-form').addEventListener('submit', function(e) {
-      e.preventDefault(); // זה מונע את רענון העמוד בעת שליחת הטופס
+      e.preventDefault(); 
       var message = document.getElementById('chat-input').value;
       if (message) {
-        // החלף את 'receiverId' במזהה המשתמש של הפרופיל שאליו אתה שולח הודעה
-        console.log('sent',connectedUserID,userId);
         socket.emit('sendMessage', { senderId: connectedUserID, receiverId: userId, text: message });
         document.getElementById('chat-input').value = '';
       }
@@ -40,7 +38,6 @@ $(document).ready(() => {
     });
 
     socket.on('message', function(message) {
-      console.log('new message',message);
       var item = document.createElement('li');
       item.classList.add("receiver", 'message');
 
@@ -75,7 +72,6 @@ function displayMessage(message, userId) {
   const messagesContainer = document.getElementById('messages');
   const item = document.createElement('li');
 
-  // בדיקה האם המשתמש הוא השולח או המקבל
   if (message.senderId === userId) {
     item.classList.add("sender",'message');
     item.textContent = `${message.text}`;
@@ -87,5 +83,4 @@ function displayMessage(message, userId) {
   messagesContainer.appendChild(item);
 }
 
-// קרא לפונקציה זו כאשר המשתמש מתחבר
 

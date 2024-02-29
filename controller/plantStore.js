@@ -7,7 +7,6 @@ import {profileButton} from "./profileController.js"
 
 getConnectedUserName()
   .then(userName => {
-    console.log(userName);
     loadUserName('userName', userName); 
     postsEventListeners('plant', null);
     getConnectedUserID()
@@ -47,7 +46,6 @@ getConnectedUserName()
     const watering = document.getElementById('search-watering').value;
     const minPrice = document.getElementById('search-minPrice').value;
     const maxPrice = document.getElementById('search-maxPrice').value;
-    console.log(plantName);
 
     const queryParams = new URLSearchParams({
         plantName,
@@ -68,8 +66,8 @@ getConnectedUserName()
       success: function (data) {
           const posts = data.posts;
           const postsContainer = $('#posts-container');
-          postsContainer.html('');
-          handleLoadedPosts(posts, 0, posts.length, connectedUserId, connectedUserName);
+          postsContainer.html(' ');
+         handleLoadedPosts(posts, 0, posts.length, connectedUserId, connectedUserName);
       },
       error: function (error) {
           console.log('error fetching plant search results', error);
